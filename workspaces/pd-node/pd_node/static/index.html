@@ -8,6 +8,9 @@
         height: 50vh;
         margin-top: 10px;
       }
+      #angle {
+        width: 250px;
+      }
     </style>
   </head>
   <body>
@@ -61,7 +64,7 @@
       </table>
 
       <div>
-        <input type="range" id="angle" min="0" max="100" />
+        <input type="range" id="angle" min="0" max="96" />
       </div>
     </main>
     <script>
@@ -97,7 +100,7 @@
         $("#angle").addEventListener("change", (event) => {
           setTimeout(() => {
             post("/motor/angle", {
-              angle: parseInt(100 - event.target.value),
+              angle: parseInt(96 - event.target.value),
             });
           });
         });
