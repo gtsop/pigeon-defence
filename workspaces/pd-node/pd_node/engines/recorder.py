@@ -51,8 +51,17 @@ def convert_to_mp4_async(input_path):
     output_path = input_path.with_suffix(".mp4")
 
     def worker():
-        result = subprocess.run([
-            "ffmpeg", "-y", "-i", str(input_path), "-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output_path)
+        result = subprocess.Popen([
+            "nice", "-n", "10",
+            "ionice", "-c", "3",
+            "ffmpeg",
+            "-y",
+            "-i", str(input_path),
+            "-c:v", "libx264",
+            "-preset", "veryfast",
+            "-pix_fmt", "yuv420p",
+            "-movflags", "+faststart",
+            str(output_path),
         ])
 
         if result.returncode == 0:
