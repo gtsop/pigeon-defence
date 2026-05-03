@@ -98,8 +98,6 @@ try:
     MIN_DUTY = 1.8
     MAX_DUTY = 13.05
 
-    app = FastAPI()
-
     # ---- servo setup (global) ----
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(PIN, GPIO.OUT)
@@ -118,7 +116,9 @@ try:
     def set_led(on):
         GPIO.output(detection_pin, GPIO.HIGH if on else GPIO.LOW)
 
-except:
+except Exception as e:
+    print("Failed to probe rpi stuff", e)
+
     def set_led(on):
         print(f"Turning LED {'ON' if on else 'OFF'}") 
 
