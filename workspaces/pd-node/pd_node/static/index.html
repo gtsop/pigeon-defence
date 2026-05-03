@@ -61,7 +61,7 @@
       </table>
 
       <div>
-        <input id="angle" />
+        <input type="range" id="angle" min="0" max="100" />
       </div>
     </main>
     <script>
@@ -94,7 +94,7 @@
       }
 
       function main() {
-        $("#angle").addEventListener("keyup", (event) => {
+        $("#angle").addEventListener("change", (event) => {
           setTimeout(() => {
             post("/motor/angle", {
               angle: parseInt(event.target.value),
