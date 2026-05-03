@@ -22,12 +22,12 @@ function gamepadLoop() {
   const angle = $("#angle");
 
   if (isLeft(gamepad)) {
-    angle.value -= 1;
+    angle.value = parseInt(angle.value) - 1;
     angle.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
   if (isRight(gamepad)) {
-    angle.value += 1;
+    angle.value = parseInt(angle.value) + 1;
     angle.dispatchEvent(new Event("change", { bubbles: true }));
   }
 }
