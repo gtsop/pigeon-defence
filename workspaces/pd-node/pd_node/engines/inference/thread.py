@@ -38,7 +38,12 @@ def thread(state):
 
         last_frame = frame
 
-        results = model(frame, verbose=False)[0]
+        results = model.track(
+            frame,
+            persist=True,
+            tracker="bytetrack.yaml",
+            verbose=False
+        )[0]
 
         state.inference.set_results(results)
 
