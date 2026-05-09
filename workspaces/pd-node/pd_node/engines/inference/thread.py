@@ -11,10 +11,7 @@ model = YOLO(get_base_path() / "models/yolo11n_ncnn_model", task="detect")
 
 session = db.create_session()
 
-
 def thread(state):
-    last_frame = None
-
 
     state.inference.set_names(model.names)
 
@@ -30,13 +27,6 @@ def thread(state):
         if frame is None:
             time.sleep(1/15)
             continue
-
-        if np.array_equal(frame, last_frame):
-            log("same frame, skipping")
-            time.sleep(1/15)
-            continue
-
-        last_frame = frame
 
         results = model.track(
             frame,
