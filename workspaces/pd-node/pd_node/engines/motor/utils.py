@@ -41,6 +41,8 @@ try:
         pwm.ChangeDutyCycle(0)
 
 except Exception as e:
+    print("[motor_thread]: Failed to init RPi.GPIO", e)
+
     def set_angle(angle: float):
         print(f"[motor_thread]: Setting angle {angle}")
 
