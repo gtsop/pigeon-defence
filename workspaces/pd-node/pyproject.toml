@@ -3,7 +3,7 @@ name = "pd-node"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "fastapi[standard]>=0.136.1",
     "lap>=0.5.13",
@@ -20,6 +20,12 @@ dependencies = [
     "uvicorn>=0.46.0",
 ]
 
+[tool.uv]
+environments = [
+  "sys_platform == 'linux' and platform_machine == 'x86_64'",
+  "sys_platform == 'linux' and platform_machine == 'aarch64'"
+]
+
 [tool.uv.workspace]
 members = [
     ".",
@@ -27,6 +33,14 @@ members = [
 
 [tool.uv.sources]
 pd-node = { workspace = true, editable = true }
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
 
 [tool.setuptools.packages.find]
 include = ["pd_node*"]
@@ -37,3 +51,5 @@ dev = [
     "pytest>=9.0.3",
     "pytest-watcher>=0.6.3",
 ]
+
+
