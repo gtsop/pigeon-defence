@@ -3,7 +3,7 @@ import time
 try:
     import RPi.GPIO as GPIO
 
-    GPIO.set(GPIO.BOARD)
+    GPIO.setmode(GPIO.BOARD)
 
     # Setup horizontal servo
     h_pin = 33
