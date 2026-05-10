@@ -21,7 +21,7 @@ def thread(state):
                 write_frames(state, writer)
                 writer.release()
                 writer = None
-                convert_to_mp4_async(Path(video_name))
+                #convert_to_mp4_async(Path(video_name))
                 print("Saved video")
             time.sleep(5)
             continue
@@ -44,7 +44,7 @@ def write_frames(state, writer):
 
 def new_video_name():
     date_string = datetime.datetime.now().strftime("%Y%m%d_%H%M%S") 
-    return VIDEO_DIR + "/" + date_string + ".avi"
+    return VIDEO_DIR + "/" + date_string + ".mp4"
 
 def convert_to_mp4_async(input_path):
     input_path = Path(input_path)
