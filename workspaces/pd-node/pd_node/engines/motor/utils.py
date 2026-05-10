@@ -12,7 +12,7 @@ try:
     h_servo.start(0)
 
     # Setup horizontal servo
-    v_pin = 33
+    v_pin = 32
     GPIO.setup(v_pin, GPIO.OUT)
     v_servo = GPIO.PWM(v_pin, 50)
     v_servo.start(0)
