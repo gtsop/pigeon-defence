@@ -29,7 +29,7 @@ def thread(state):
 
         if writer is None:
             video_name = new_video_name()
-            writer = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*"MJPG"), 15, (640, 480))
+            writer = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*"avc1"), 15, (640, 480))
 
         write_frames(state, writer)
         

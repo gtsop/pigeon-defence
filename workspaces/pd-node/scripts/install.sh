@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")"
 cd $SCRIPT_DIR/../
 
+sudo apt install -y ffmpeg
 
 # 1. Build the project
 ./scripts/build.sh
