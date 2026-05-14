@@ -9,8 +9,9 @@ from fastapi.responses import FileResponse, StreamingResponse
 import uvicorn
 
 from pd_node.api import api
-from pd_node.utils import get_base_path 
+from pd_node.utils import get_base_path, stream_video
 from pd_node.db import create_db_and_tables
+from pd_node.engines.recorder.utils import get_video_dir
 
 import pd_node.engines as engines
 
@@ -106,7 +107,7 @@ def recorder_stop():
 
 @app.get("/recorder/videos/")
 def recorder_videos():
-    VIDEO_DIR = Path("/var/lib/pd-node/videos")
+    VIDEO_DIR = Path(get_video_dir())
     videos = []
 
     for path in VIDEO_DIR.iterdir():
@@ -127,7 +128,7 @@ def recorder_videos():
 
 @app.get("/recorder/videos/{filename}")
 def recorder_videos_video(filename):
-    VIDEO_DIR = Path("/var/lib/pd-node/videos")
+    VIDEO_DIR = Path(get_video_dir())
     path = (VIDEO_DIR / filename).resolve()
     print("Resolved path", path)
 
@@ -140,13 +141,9 @@ def recorder_videos_video(filename):
     if path.suffix.lower() != ".mp4":
         raise HTTPException(status_code=400)
 
-    return FileResponse(
-        path,
-        media_type="video/mp4",
-        filename=filename,
-        headers={
-            "Content-Disposition": "inline",
-        }
+    return StreamingResponse(
+        stream_video(path),
+        media_type="multipart/x-mixed-replace; boundary=frame"
     )
 
 @app.delete("/recorder/videos/{filename}")

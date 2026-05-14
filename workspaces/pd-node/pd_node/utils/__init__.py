@@ -5,6 +5,8 @@ import time
 
 import cv2
 
+from .stream import stream_video
+
 def get_base_path():
     if hasattr(sys, "_MEIPASS"):
         return Path(sys._MEIPASS).resolve()

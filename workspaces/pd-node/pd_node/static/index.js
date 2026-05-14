@@ -111,7 +111,7 @@ function createPlayCell(name) {
   play.onclick = function () {
     const newSrc = API_URL + "/recorder/videos/" + name;
     console.log("setting src", newSrc);
-    $("#video").src = newSrc;
+    $("#live").src = newSrc;
   };
   const remove = document.createElement("button");
   remove.innerText = "Delete";
