@@ -59,6 +59,13 @@
         </tbody>
       </table>
 
+      <div class="disk-stats">
+        Video Storage:
+        <span class="disk-stats__used"></span> /
+        <span class="disk-stats__total"></span>
+        (<span class="disk-stats__perc"></span>)
+      </div>
+
       <div>
         <video controls id="video"></video>
       </div>
@@ -69,13 +76,6 @@
 
       <div>
         <input type="range" id="angle" min="0" max="96" />
-      </div>
-
-      <div class="disk-stats">
-        Video Storage:
-        <span class="disk-stats__used"></span> /
-        <span class="disk-stats__total"></span>
-        (<span class="disk-stats__perc"></span>)
       </div>
     </main>
 

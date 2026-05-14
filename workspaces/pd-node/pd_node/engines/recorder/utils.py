@@ -14,7 +14,7 @@ def get_video_disk_stats():
         "free": humanize(quota - size),
         "total": humanize(quota),
         "used": humanize(size),
-        "used_percent": f"{size / quota:.2f}",
+        "used_percent": f"{size / quota * 100:.2f}",
     }
 
 def get_video_dir():
