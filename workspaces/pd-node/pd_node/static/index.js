@@ -57,8 +57,6 @@ function main() {
 
   $("#record-stop").addEventListener("click", async () => {
     await post("/recorder/stop");
-    setTimeout(listVideos, 2000);
-    setTimeout(listVideos, 10000);
   });
 
   $("#video-live").addEventListener("click", () => {
@@ -69,7 +67,6 @@ function main() {
   });
 
   initStatus();
-  listVideos();
 }
 
 async function initStatus() {
@@ -80,22 +77,6 @@ async function initStatus() {
   $("[name='video']").checked = status.video;
   $("[name='inference']").checked = status.inference;
   $("[name='composer']").checked = status.composer;
-}
-
-async function listVideos() {
-  const response = await get("/recorder/videos");
-  const videos = await response.json();
-
-  const table = $("#videos tbody");
-  table.innerHTML = "";
-  videos.forEach((video) => {
-    const row = document.createElement("tr");
-    const name = createNameCell(video.name);
-    const play = createPlayCell(video.name);
-    row.appendChild(name);
-    row.appendChild(play);
-    table.appendChild(row);
-  });
 }
 
 function createNameCell(name) {

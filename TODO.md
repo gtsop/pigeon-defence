@@ -4,5 +4,9 @@
 
 # Inference:
 
-- Create a database of detections (object, time)
 - Expose the detections over an api
+
+# Recorder
+
+- Clear old videos when capacity is over 90%
+- Show some nice UI regarding recorder videos
